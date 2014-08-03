@@ -13,6 +13,9 @@ import org.hsqldb.jdbc.JDBCDataSource;
 public class DbManager {
 	
     private String requestCreateTablesUsers = "CREATE TABLE USERS ( ID INTEGER IDENTITY, LOGIN VARCHAR(256), PASSWORD VARCHAR(256))";
+    private String requestUser1 = "INSERT INTO USERS(ID,LOGIN,PASSWORD) VALUES('1','straumat', 'straumat16')";
+    private String requestUser2 = "INSERT INTO USERS(ID,LOGIN,PASSWORD) VALUES('2','jgoncalves', 'jgoncalves16')";
+    private String requestUser3 = "INSERT INTO USERS(ID,LOGIN,PASSWORD) VALUES('3','sgoumard', 'sgoumard16')";
 		 
 		/** Service Connexion. */
 		private JDBCDataSource dataSource;
@@ -52,6 +55,9 @@ public class DbManager {
 				dataSource.setDatabase(database);
 				connection = dataSource.getConnection(user, password);
 				executRequest(requestCreateTablesUsers);
+				executRequest(requestUser1);
+				executRequest(requestUser2);
+				executRequest(requestUser3);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
