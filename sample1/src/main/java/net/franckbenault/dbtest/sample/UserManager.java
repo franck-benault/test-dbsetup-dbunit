@@ -18,7 +18,7 @@ public class UserManager {
 		 
 		/** Service Connexion. */
 		private JDBCDataSource dataSource;
-		private Connection connexion;
+		private Connection connection;
 	 
 		/** driver JDBC. */
 		private String jdbcDriver = "org.hsqldb.jdbcDriver";
@@ -52,22 +52,24 @@ public class UserManager {
 				dataSource = new JDBCDataSource();
 		
 				dataSource.setDatabase(database);
-				connexion = dataSource.getConnection(user, password);
+				connection = dataSource.getConnection(user, password);
 				executerRequest(requestCreateTablesUsers);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 		}
+
+		public Connection getConnection() {
+		      return connection;     
+		}
 		
 		public DataSource getDataSource() {
 		      return dataSource;
-
-		      
 		}
 		
 		public ResultSet executerRequest(String requete) throws SQLException {
 			Statement statement;
-			statement = connexion.createStatement();
+			statement = connection.createStatement();
 			ResultSet resultat = statement.executeQuery(requete);
 			return resultat;
 		}
@@ -77,12 +79,12 @@ public class UserManager {
 		 * @throws SQLException SQL exception
 		 */
 		public void stopDB() throws SQLException {
-			Statement st = connexion.createStatement();
+			Statement st = connection.createStatement();
 	 
 			// On envoie l'instruction pour arreter proprement HSQLDB
 			st.execute("SHUTDOWN");
 			// On ferme la connexion
-			connexion.close();
+			connection.close();
 	 
 		}
 		
