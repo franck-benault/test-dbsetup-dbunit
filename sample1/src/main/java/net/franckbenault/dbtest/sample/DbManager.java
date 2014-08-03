@@ -4,17 +4,15 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
+
 
 import javax.sql.DataSource;
 
 import org.hsqldb.jdbc.JDBCDataSource;
 
-public class UserManager {
+public class DbManager {
 	
     private String requestCreateTablesUsers = "CREATE TABLE USERS ( ID INTEGER IDENTITY, LOGIN VARCHAR(256), PASSWORD VARCHAR(256))";
-    private String requestSelectUsers = "SELECT * FROM users";
 		 
 		/** Service Connexion. */
 		private JDBCDataSource dataSource;
@@ -53,7 +51,7 @@ public class UserManager {
 		
 				dataSource.setDatabase(database);
 				connection = dataSource.getConnection(user, password);
-				executerRequest(requestCreateTablesUsers);
+				executRequest(requestCreateTablesUsers);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -67,7 +65,7 @@ public class UserManager {
 		      return dataSource;
 		}
 		
-		public ResultSet executerRequest(String requete) throws SQLException {
+		public ResultSet executRequest(String requete) throws SQLException {
 			Statement statement;
 			statement = connection.createStatement();
 			ResultSet resultat = statement.executeQuery(requete);
@@ -86,24 +84,5 @@ public class UserManager {
 			// On ferme la connexion
 			connection.close();
 	 
-		}
-		
-		public List<User> getUsers() {
-			List<User> users = new ArrayList<User>();
-			try {
-				ResultSet resultSet =executerRequest(this.requestSelectUsers);
-				while(resultSet.next()){
-					 
-		             int id=resultSet.getInt(1);
-		             String login=resultSet.getString(2); 
-		             String password=resultSet.getString(3); 
-		             User user = new User(id,login,password);
-		             users.add(user);
-				}
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			return users;
 		}
 }

@@ -9,35 +9,32 @@ import java.util.List;
 import org.dbunit.database.DatabaseConnection;
 import org.dbunit.database.IDatabaseConnection;
 import org.dbunit.dataset.IDataSet;
-import org.dbunit.dataset.stream.IDataSetProducer;
-import org.dbunit.dataset.stream.StreamingDataSet;
-import org.dbunit.dataset.xml.FlatXmlProducer;
 import org.dbunit.dataset.xml.XmlDataSet;
 import org.dbunit.operation.DatabaseOperation;
-import org.junit.After;
 import org.junit.AfterClass;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.xml.sax.InputSource;
 
 
-public class UserManagerTestWithDbUnit {
+public class UserQueriesTestWithDbUnit {
 
-	private static UserManager userManager;
+	private static DbManager dbManager;
+	private static UserQueries userQueries;
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		userManager = new UserManager();
-		userManager.connexionDB();
+		dbManager = new DbManager();
+		dbManager.connexionDB();
+		userQueries = new UserQueries(dbManager);
+
 
 		
 		// initialize your database connection here
-		IDatabaseConnection dc = new DatabaseConnection(userManager.getConnection());
+		IDatabaseConnection dc = new DatabaseConnection(dbManager.getConnection());
         // ...
 
         // initialize your dataset here 
-		InputStream is = UserManagerTestWithDbUnit.class.getResourceAsStream("/users.xml");
+		InputStream is = UserQueriesTestWithDbUnit.class.getResourceAsStream("/users.xml");
        
         IDataSet dataSet = new XmlDataSet(is);
         // ...
@@ -50,20 +47,13 @@ public class UserManagerTestWithDbUnit {
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
 		
-		userManager.stopDB();
+		dbManager.stopDB();
 	}
 
-	@Before
-	public void setUp() throws Exception {
-	}
-
-	@After
-	public void tearDown() throws Exception {
-	}
 
 	@Test
 	public void testGetUsers() {
-		List<User> users = userManager.getUsers();
+		List<User> users = userQueries.getUsers();
 		assertNotNull(users);
 		assertEquals(users.size(),2);
 	}
