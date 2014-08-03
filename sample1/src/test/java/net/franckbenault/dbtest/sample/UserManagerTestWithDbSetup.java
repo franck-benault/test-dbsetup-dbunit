@@ -2,11 +2,17 @@ package net.franckbenault.dbtest.sample;
 
 import static org.junit.Assert.*;
 
+import java.util.List;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import com.ninja_squad.dbsetup.DbSetup;
+import com.ninja_squad.dbsetup.destination.DataSourceDestination;
+import com.ninja_squad.dbsetup.operation.Operation;
 
 public class UserManagerTestWithDbSetup {
 
@@ -16,7 +22,11 @@ public class UserManagerTestWithDbSetup {
 	public static void setUpBeforeClass() throws Exception {
 		userManager = new UserManager();
 		userManager.connexionDB();
+		
+		Operation operation = CommonOperations.DELETE_ALL;
 	
+		DbSetup dbSetup = new DbSetup(new DataSourceDestination(userManager.getDataSource()), operation);
+		dbSetup.launch();
 	}
 
 	@AfterClass
@@ -35,7 +45,8 @@ public class UserManagerTestWithDbSetup {
 
 	@Test
 	public void testGetUsers() {
-		//fail("Not yet implemented");
+		List<User> users = userManager.getUsers();
+		assertNotNull(users);
 	}
 
 }

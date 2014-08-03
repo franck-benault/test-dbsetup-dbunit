@@ -1,26 +1,35 @@
 package net.franckbenault.dbtest.sample;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.sql.DataSource;
+
+import org.hsqldb.jdbc.JDBCDataSource;
+
 public class UserManager {
+	
+    private String requestCreateTablesUsers = "CREATE TABLE USERS ( idUser INTEGER IDENTITY, login VARCHAR(256), password VARCHAR(256))";
+    
 		 
 		/** Service Connexion. */
+		private JDBCDataSource dataSource;
 		private Connection connexion;
 	 
 		/** driver JDBC. */
 		private String jdbcDriver = "org.hsqldb.jdbcDriver";
 	 
-		/** mode mémoire. */
+		/** memory mode. */
 		private String database = "jdbc:hsqldb:mem:database";
 	 
-		/** utilisateur qui se connecte à la base de données. */
+		/** user for DB connection. */
 		private String user = "sa";
 	 
-		/** mot de passe pour se connecter à la base de données. */
+		/** password for DB connection */
 		private String password = "";
 	 
 		/**
@@ -40,11 +49,27 @@ public class UserManager {
 			}
 	 
 			try {
-				// Puis on se connecte à la base de données en mode mémoire
-				connexion = DriverManager.getConnection(database, user, password);
+				dataSource = new JDBCDataSource();
+		
+				dataSource.setDatabase(database);
+				connexion = dataSource.getConnection();
+				executerRequest(requestCreateTablesUsers);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
+		}
+		
+		public DataSource getDataSource() {
+		      return dataSource;
+
+		      
+		}
+		
+		public ResultSet executerRequest(String requete) throws SQLException {
+			Statement statement;
+			statement = connexion.createStatement();
+			ResultSet resultat = statement.executeQuery(requete);
+			return resultat;
 		}
 	 
 		/**
@@ -62,7 +87,7 @@ public class UserManager {
 		}
 		
 		public List<User> getUsers() {
-			
-			return null;
+			List<User> users = new ArrayList<User>();
+			return users;
 		}
 }
