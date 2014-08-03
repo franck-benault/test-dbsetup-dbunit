@@ -26,8 +26,8 @@ public class UserManagerTestWithDbSetup {
 		
 		Operation operation = 
 				Operations.sequenceOf(
-		                CommonOperations.DELETE_ALL,
-		                CommonOperations.INSERT_REFERENCE_DATA);
+		                DBSetupCommonOperations.DELETE_ALL,
+		                DBSetupCommonOperations.INSERT_USERS_DATA);
 				
 	
 		DbSetup dbSetup = new DbSetup(new DataSourceDestination(userManager.getDataSource()), operation);
