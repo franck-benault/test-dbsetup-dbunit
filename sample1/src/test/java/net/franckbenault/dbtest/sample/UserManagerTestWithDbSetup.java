@@ -13,6 +13,7 @@ import org.junit.Test;
 import com.ninja_squad.dbsetup.DbSetup;
 import com.ninja_squad.dbsetup.destination.DataSourceDestination;
 import com.ninja_squad.dbsetup.operation.Operation;
+import com.ninja_squad.dbsetup.Operations;
 
 public class UserManagerTestWithDbSetup {
 
@@ -23,7 +24,11 @@ public class UserManagerTestWithDbSetup {
 		userManager = new UserManager();
 		userManager.connexionDB();
 		
-		Operation operation = CommonOperations.DELETE_ALL;
+		Operation operation = 
+				Operations.sequenceOf(
+		                CommonOperations.DELETE_ALL,
+		                CommonOperations.INSERT_REFERENCE_DATA);
+				
 	
 		DbSetup dbSetup = new DbSetup(new DataSourceDestination(userManager.getDataSource()), operation);
 		dbSetup.launch();
@@ -47,6 +52,7 @@ public class UserManagerTestWithDbSetup {
 	public void testGetUsers() {
 		List<User> users = userManager.getUsers();
 		assertNotNull(users);
+		assertEquals(users.size(),2);
 	}
 
 }

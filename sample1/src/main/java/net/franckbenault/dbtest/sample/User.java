@@ -2,6 +2,12 @@ package net.franckbenault.dbtest.sample;
 
 public class User {
 	
+	public User(int id, String login, String password) {
+		this.id = id;
+		this.login = login;
+		this.password = password;
+	}
+	
 	private int id;
 	
 	private String login;

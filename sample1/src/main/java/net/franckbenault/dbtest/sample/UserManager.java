@@ -13,8 +13,8 @@ import org.hsqldb.jdbc.JDBCDataSource;
 
 public class UserManager {
 	
-    private String requestCreateTablesUsers = "CREATE TABLE USERS ( idUser INTEGER IDENTITY, login VARCHAR(256), password VARCHAR(256))";
-    
+    private String requestCreateTablesUsers = "CREATE TABLE USERS ( ID INTEGER IDENTITY, LOGIN VARCHAR(256), PASSWORD VARCHAR(256))";
+    private String requestSelectUsers = "SELECT * FROM users";
 		 
 		/** Service Connexion. */
 		private JDBCDataSource dataSource;
@@ -52,7 +52,7 @@ public class UserManager {
 				dataSource = new JDBCDataSource();
 		
 				dataSource.setDatabase(database);
-				connexion = dataSource.getConnection();
+				connexion = dataSource.getConnection(user, password);
 				executerRequest(requestCreateTablesUsers);
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -88,6 +88,20 @@ public class UserManager {
 		
 		public List<User> getUsers() {
 			List<User> users = new ArrayList<User>();
+			try {
+				ResultSet resultSet =executerRequest(this.requestSelectUsers);
+				while(resultSet.next()){
+					 
+		             int id=resultSet.getInt(1);
+		             String login=resultSet.getString(2); 
+		             String password=resultSet.getString(3); 
+		             User user = new User(id,login,password);
+		             users.add(user);
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			return users;
 		}
 }
