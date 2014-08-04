@@ -66,7 +66,6 @@ public class PersonQueriesTestWithDbSetup {
 	}
 	
 	@Test
-	@Ignore
 	public void testFindPersonsByLastName() {
 		List<Person> persons = personQueries.findPersonsByLastName("Smith");
 		assertNotNull(persons);

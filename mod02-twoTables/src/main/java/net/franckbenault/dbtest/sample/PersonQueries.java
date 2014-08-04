@@ -9,6 +9,9 @@ public class PersonQueries {
 
 	private static final String requestSelectPersons = "SELECT * FROM persons";
 	private static final String requestSelectPersonsByFirstName = "SELECT * FROM persons where FIRST_NAME='%s'";
+	private static final String requestSelectPersonsByLastName = "SELECT * FROM persons where LAST_NAME='%s'";
+	private static final String requestSelectPersonsByFirstNameLastName = "SELECT * FROM persons where FIRST_NAME='%s'";
+
 	
 	private DbManager dbManager;
 	
@@ -55,8 +58,23 @@ public class PersonQueries {
 		return persons;
 	}
 	
-	public List<Person> findPersonsByLastName(String lastName) {
-		return null;
+	public List<Person> findPersonsByLastName(String lastNameInput) {
+		List<Person> persons = new ArrayList<Person>();
+		try {
+			ResultSet resultSet = dbManager
+					.executRequest(String.format(requestSelectPersonsByLastName,lastNameInput));
+			while (resultSet.next()) {
+
+				int id = resultSet.getInt(1);
+				String firstName = resultSet.getString(2);
+				String lastName = resultSet.getString(3);
+				Person person = new Person(id, firstName, lastName);
+				persons.add(person);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return persons;
 	}
 	
 	public List<Person> findPersonsByFirstNameLastName(String firstName,String lastName) {
