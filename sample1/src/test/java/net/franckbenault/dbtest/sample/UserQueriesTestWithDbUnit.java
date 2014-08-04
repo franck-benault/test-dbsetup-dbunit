@@ -2,6 +2,7 @@ package net.franckbenault.dbtest.sample;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 import java.io.InputStream;
 import java.util.List;
@@ -52,10 +53,22 @@ public class UserQueriesTestWithDbUnit {
 
 
 	@Test
-	public void testGetAllUsers() {
-		List<User> users = userQueries.getAllUsers();
+	public void testFindAllUsers() {
+		List<User> users = userQueries.findAllUsers();
 		assertNotNull(users);
 		assertEquals(users.size(),2);
+	}
+	
+	@Test
+	public void testFindUserByLogin() {
+		User user = userQueries.findUserByLogin("root");
+		assertNotNull(user);
+	}
+	
+	@Test
+	public void testFindUserByLogin_NotFound() {
+		User user = userQueries.findUserByLogin("doesNotExist");
+		assertNull(user);
 	}
 
 }

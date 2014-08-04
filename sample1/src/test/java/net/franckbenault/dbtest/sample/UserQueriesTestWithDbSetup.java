@@ -42,10 +42,23 @@ public class UserQueriesTestWithDbSetup {
 
 
 	@Test
-	public void testGetAllUsers() {
-		List<User> users = userQueries.getAllUsers();
+	public void testFindAllUsers() {
+		List<User> users = userQueries.findAllUsers();
 		assertNotNull(users);
 		assertEquals(users.size(),2);
 	}
 
+	@Test
+	public void testFindUserByLogin() {
+		User user = userQueries.findUserByLogin("root");
+		assertNotNull(user);
+	}
+	
+	@Test
+	public void testFindUserByLogin_NotFound() {
+		User user = userQueries.findUserByLogin("doesNotExist");
+		assertNull(user);
+	}
+	
+	
 }

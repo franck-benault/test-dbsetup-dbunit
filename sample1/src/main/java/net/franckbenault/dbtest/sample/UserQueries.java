@@ -18,7 +18,7 @@ public class UserQueries {
 		this.dbManager = dbManager;
 	}
 
-	public List<User> getAllUsers() {
+	public List<User> findAllUsers() {
 		List<User> users = new ArrayList<User>();
 		try {
 			ResultSet resultSet = dbManager
@@ -38,23 +38,22 @@ public class UserQueries {
 		return users;
 	}
 	
-	public List<User> getUserByLogin(String loginInput) {
-		List<User> users = new ArrayList<User>();
+	public User findUserByLogin(String loginInput) {
+		User user = null;
 		try {
 			ResultSet resultSet = dbManager
-					.executRequest(requestSelectUserByLogin+loginInput);
+					.executRequest(String.format(requestSelectUserByLogin,loginInput));
 			while (resultSet.next()) {
 
 				int id = resultSet.getInt(1);
 				String login = resultSet.getString(2);
 				String password = resultSet.getString(3);
-				User user = new User(id, login, password);
-				users.add(user);
+				user = new User(id, login, password);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return users;
+		return user;
 	}
 }
