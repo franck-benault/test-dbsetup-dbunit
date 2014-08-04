@@ -73,6 +73,7 @@ public class PersonQueriesTestWithDbUnit {
 		List<Person> persons = personQueries.findPersonsByFirstNameLastName("Sahra","Smith");
 		assertNotNull(persons);
 		assertEquals(persons.size(),1);		
+		assertEquals(persons.get(0).getAddresses().size(),2);	
 	}
 
 }

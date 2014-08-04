@@ -76,7 +76,8 @@ public class PersonQueriesTestWithDbSetup {
 	public void testFindPersonsByFirstNameLastName() {
 		List<Person> persons = personQueries.findPersonsByFirstNameLastName("Sahra","Smith");
 		assertNotNull(persons);
-		assertEquals(persons.size(),1);		
+		assertEquals(persons.size(),1);	
+		assertEquals(persons.get(0).getAddresses().size(),2);	
 	}
 
 }

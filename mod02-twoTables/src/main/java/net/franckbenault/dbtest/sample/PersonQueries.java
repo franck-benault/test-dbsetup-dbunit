@@ -11,6 +11,7 @@ public class PersonQueries {
 	private static final String requestSelectPersonsByFirstName = "SELECT * FROM persons where FIRST_NAME='%s'";
 	private static final String requestSelectPersonsByLastName = "SELECT * FROM persons where LAST_NAME='%s'";
 	private static final String requestSelectPersonsByFirstNameLastName = "SELECT * FROM persons where FIRST_NAME='%s' and LAST_NAME='%s'";
+	private static final String requestSelectAddressesByPersonId = "SELECT * FROM address where ID_PERSON='%s'";
 
 	
 	private DbManager dbManager;
@@ -88,11 +89,34 @@ public class PersonQueries {
 				String firstName = resultSet.getString(2);
 				String lastName = resultSet.getString(3);
 				Person person = new Person(id, firstName, lastName);
+				
+				List<Address> addresses = findAddressesByPersonId(id);
+				person.setAddresses(addresses);
+				
 				persons.add(person);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return persons;
+	}
+	
+	public List<Address> findAddressesByPersonId(int personId) {
+		List<Address> addresses = new ArrayList<Address>();
+		try {
+			ResultSet resultSet = dbManager
+					.executRequest(String.format(requestSelectAddressesByPersonId,personId));
+			while (resultSet.next()) {
+
+				int id = resultSet.getInt(1);
+				String town = resultSet.getString(2);
+				String street = resultSet.getString(3);
+				Address address = new Address(id, town, street);
+				addresses.add(address);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return addresses;
 	}
 }
