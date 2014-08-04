@@ -52,7 +52,6 @@ public class PersonQueriesTestWithDbSetup {
 	}
 
 	@Test
-	@Ignore
 	public void testFindPersonsByFirstName() {
 		List<Person> persons = personQueries.findPersonsByFirstName("Sahra");
 		assertNotNull(persons);
@@ -60,7 +59,6 @@ public class PersonQueriesTestWithDbSetup {
 	}
 
 	@Test
-	@Ignore
 	public void testFindPersonsByFirstName_NotFound() {
 		List<Person> persons = personQueries.findPersonsByFirstName("DoesNotExist");
 		assertNotNull(persons);
