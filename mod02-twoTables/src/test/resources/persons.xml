@@ -1,0 +1,46 @@
+<!DOCTYPE dataset SYSTEM "dataset.dtd">
+<dataset>
+    <table name="PERSONS">
+        <column>ID</column>
+        <column>FIRST_NAME</column>
+        <column>LAST_NAME</column>
+        <row>
+            <value>1</value>
+            <value>Sahra</value>
+            <value>Smith</value>
+        </row>
+        <row>
+            <value>2</value>
+            <value>Wim</value>
+            <value>Smith</value>
+        </row>
+        <row>
+            <value>3</value>
+            <value>Sahra</value>
+            <value>Dupond</value>
+        </row>
+        <row>
+            <value>4</value>
+            <value>William</value>
+            <value>Smith</value>
+        </row>
+    </table>
+    <table name="ADDRESS">
+        <column>ID</column>
+        <column>TOWN</column>
+        <column>STREET</column>
+        <column>ID_PERSON</column>
+        <row>
+            <value>1</value>
+            <value>LYON</value>
+            <value>rue Saint Martin</value>
+            <value>1</value>
+        </row>
+        <row>
+            <value>2</value>
+            <value>LYON</value>
+            <value>rue Saint Vincent</value>
+            <value>1</value>
+        </row>
+    </table>
+</dataset>

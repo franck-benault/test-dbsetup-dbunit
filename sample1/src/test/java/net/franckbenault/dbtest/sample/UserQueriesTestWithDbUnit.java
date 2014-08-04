@@ -27,19 +27,10 @@ public class UserQueriesTestWithDbUnit {
 		dbManager = new DbManager();
 		dbManager.connexionDB();
 		userQueries = new UserQueries(dbManager);
-
-
 		
-		// initialize your database connection here
 		IDatabaseConnection dc = new DatabaseConnection(dbManager.getConnection());
-        // ...
-
-        // initialize your dataset here 
 		InputStream is = UserQueriesTestWithDbUnit.class.getResourceAsStream("/users.xml");
-       
         IDataSet dataSet = new XmlDataSet(is);
-        // ...
-
        DatabaseOperation.CLEAN_INSERT.execute(dc, dataSet);
        
 		
