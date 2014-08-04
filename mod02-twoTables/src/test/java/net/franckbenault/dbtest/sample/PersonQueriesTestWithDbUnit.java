@@ -69,7 +69,6 @@ public class PersonQueriesTestWithDbUnit {
 	}
 
 	@Test
-	@Ignore
 	public void testFindPersonsByFirstNameLastName() {
 		List<Person> persons = personQueries.findPersonsByFirstNameLastName("Sahra","Smith");
 		assertNotNull(persons);
