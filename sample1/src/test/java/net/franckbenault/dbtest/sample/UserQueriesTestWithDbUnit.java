@@ -52,8 +52,8 @@ public class UserQueriesTestWithDbUnit {
 
 
 	@Test
-	public void testGetUsers() {
-		List<User> users = userQueries.getUsers();
+	public void testGetAllUsers() {
+		List<User> users = userQueries.getAllUsers();
 		assertNotNull(users);
 		assertEquals(users.size(),2);
 	}
