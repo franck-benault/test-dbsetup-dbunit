@@ -1,0 +1,21 @@
+<!DOCTYPE dataset SYSTEM "dataset.dtd">
+<dataset>
+    <table name="USERS">
+        <column>ID</column>
+        <column>LOGIN</column>
+        <column>PASSWORD</column>
+        <column>DEACTIVATION_DATE</column>
+        <row>
+            <value>100</value>
+            <value>root</value>
+            <value>pwd</value>
+            <value>2014-04-15</value>
+        </row>
+        <row>
+            <value>110</value>
+            <value>guest</value>
+            <value>pwd</value>
+            <value>2015-05-14</value>
+        </row>
+    </table>
+</dataset>
