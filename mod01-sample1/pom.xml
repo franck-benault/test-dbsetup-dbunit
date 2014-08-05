@@ -6,7 +6,7 @@
 		<artifactId>test-dbsetup-dbunit</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<artifactId>sample1</artifactId>
+	<artifactId>mod01-sample1</artifactId>
 	<dependencies>
 		<dependency>
 			<groupId>org.dbunit</groupId>

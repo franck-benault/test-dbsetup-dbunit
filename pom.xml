@@ -6,7 +6,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<modules>
-		<module>sample1</module>
+		<module>mod01-sample1</module>
 		<module>mod02-twoTables</module>
 	</modules>
 
