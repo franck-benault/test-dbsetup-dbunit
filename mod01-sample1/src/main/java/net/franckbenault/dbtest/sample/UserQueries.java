@@ -23,14 +23,12 @@ public class UserQueries {
 		try {
 			ResultSet resultSet = dbManager
 					.executRequest(requestSelectUsers);
-			while (resultSet.next()) {
-
-				int id = resultSet.getInt(1);
-				String login = resultSet.getString(2);
-				String password = resultSet.getString(3);
-				User user = new User(id, login, password);
-				users.add(user);
-			}
+				while (resultSet.next()) {
+					User user = getUser(resultSet);
+					users.add(user);
+					
+				}
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -41,18 +39,23 @@ public class UserQueries {
 		User user = null;
 		try {
 			ResultSet resultSet = dbManager
-					.executRequest(String.format(requestSelectUserByLogin,loginInput));
+				.executRequest(String.format(requestSelectUserByLogin,loginInput));
 			while (resultSet.next()) {
-
-				int id = resultSet.getInt(1);
-				String login = resultSet.getString(2);
-				String password = resultSet.getString(3);
-				user = new User(id, login, password);
+				user = getUser(resultSet);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	
 		return user;
+	}
+	
+	private User getUser(ResultSet resultSet) throws SQLException {
+
+		int id = resultSet.getInt(1);
+		String login = resultSet.getString(2);
+		String password = resultSet.getString(3);
+		return new User(id, login, password);
+
 	}
 }
