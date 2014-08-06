@@ -47,6 +47,13 @@ public class UserQueriesTestWithDbUnit {
 	public void testFindAllUsers() {
 		List<User> users = userQueries.findAllUsers();
 		assertNotNull(users);
+		assertEquals(users.size(),3);
+	}
+	
+	@Test
+	public void testFindAllActiveUsers() {
+		List<User> users = userQueries.findAllActiveUsers();
+		assertNotNull(users);
 		assertEquals(users.size(),2);
 	}
 	
@@ -60,6 +67,7 @@ public class UserQueriesTestWithDbUnit {
 	public void testFindUserByLogin2() {
 		User user = userQueries.findUserByLogin("guest");
 		assertNotNull(user);
+		System.out.println(user.getDeactivationDate());
 	}
 	
 	@Test

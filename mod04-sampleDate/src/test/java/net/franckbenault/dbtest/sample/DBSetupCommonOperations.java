@@ -2,6 +2,8 @@ package net.franckbenault.dbtest.sample;
 
 import static com.ninja_squad.dbsetup.Operations.*;
 
+import java.util.Date;
+
 import com.ninja_squad.dbsetup.generator.ValueGenerators;
 import com.ninja_squad.dbsetup.operation.Operation;
 
@@ -10,11 +12,13 @@ public class DBSetupCommonOperations {
     public static final Operation DELETE_ALL = 
         deleteAllFrom("USERS");
     
+    
     public static final Operation INSERT_USERS_DATA =
                 insertInto("USERS")
-                	.withGeneratedValue("ID", ValueGenerators.sequence().startingAt(100L).incrementingBy(10))
-                    .columns("LOGIN", "PASSWORD")
-                    .values("root", "pwd")
-                    .values("guest", "pwd").build();
+                    .columns("ID","LOGIN", "PASSWORD", "DEACTIVATION_DATE")
+                    .values(1L,"root", "pwd", DateUtil.getTomorrow())
+                    .values(2L,"guest", "pwd",  DateUtil.getTomorrow())
+                    .values(3L,"guest", "pwd", DateUtil.getYesterday())
+                    .build();
 
 }

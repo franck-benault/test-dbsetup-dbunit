@@ -10,6 +10,8 @@ import java.util.List;
 public class UserQueries {
 
 	private static final String requestSelectUsers = "SELECT * FROM users";
+	private static final String requestSelectActiveUsers = "SELECT * FROM users where DEACTIVATION_DATE > now()";
+
 	private static final String requestSelectUserByLogin = "SELECT * FROM users where login='%s'";
 
 	
@@ -24,6 +26,26 @@ public class UserQueries {
 		try {
 			ResultSet resultSet = dbManager
 					.executRequest(requestSelectUsers);
+			while (resultSet.next()) {
+
+				int id = resultSet.getInt(1);
+				String login = resultSet.getString(2);
+				String password = resultSet.getString(3);
+				Date deactivationDate = resultSet.getDate(4);
+				User user = new User(id, login, password, deactivationDate);
+				users.add(user);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return users;
+	}
+	
+	public List<User> findAllActiveUsers() {
+		List<User> users = new ArrayList<User>();
+		try {
+			ResultSet resultSet = dbManager
+					.executRequest(requestSelectActiveUsers);
 			while (resultSet.next()) {
 
 				int id = resultSet.getInt(1);
