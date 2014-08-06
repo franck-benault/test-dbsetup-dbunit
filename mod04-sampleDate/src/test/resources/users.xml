@@ -9,19 +9,19 @@
             <value>1</value>
             <value>root</value>
             <value>pwd</value>
-            <value>2055-04-15</value>
+            <value>%TOMORROW%</value>
         </row>
         <row>
             <value>2</value>
             <value>guest</value>
             <value>pwd</value>
-            <value>2055-05-14</value>
+            <value>%TOMORROW%</value>
         </row>
         <row>
             <value>3</value>
             <value>inactive</value>
             <value>pwd</value>
-            <value>2000-05-14</value>
+            <value>%YESTERDAY%</value>
         </row>
     </table>
 </dataset>

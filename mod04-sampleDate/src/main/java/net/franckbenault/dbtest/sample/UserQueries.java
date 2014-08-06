@@ -28,11 +28,7 @@ public class UserQueries {
 					.executRequest(requestSelectUsers);
 			while (resultSet.next()) {
 
-				int id = resultSet.getInt(1);
-				String login = resultSet.getString(2);
-				String password = resultSet.getString(3);
-				Date deactivationDate = resultSet.getDate(4);
-				User user = new User(id, login, password, deactivationDate);
+				User user = getUser(resultSet);
 				users.add(user);
 			}
 		} catch (SQLException e) {
@@ -48,11 +44,7 @@ public class UserQueries {
 					.executRequest(requestSelectActiveUsers);
 			while (resultSet.next()) {
 
-				int id = resultSet.getInt(1);
-				String login = resultSet.getString(2);
-				String password = resultSet.getString(3);
-				Date deactivationDate = resultSet.getDate(4);
-				User user = new User(id, login, password, deactivationDate);
+				User user = getUser(resultSet);
 				users.add(user);
 			}
 		} catch (SQLException e) {
@@ -67,17 +59,21 @@ public class UserQueries {
 			ResultSet resultSet = dbManager
 					.executRequest(String.format(requestSelectUserByLogin,loginInput));
 			while (resultSet.next()) {
-
-				int id = resultSet.getInt(1);
-				String login = resultSet.getString(2);
-				String password = resultSet.getString(3);
-				Date deactivationDate = resultSet.getDate(4);
-				user = new User(id, login, password, deactivationDate);
+				user = getUser(resultSet);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return user;
+	}
+	
+	private User getUser(ResultSet resultSet) throws SQLException {
+
+		int id = resultSet.getInt(1);
+		String login = resultSet.getString(2);
+		String password = resultSet.getString(3);
+		Date deactivationDate = resultSet.getDate(4);
+		return new User(id, login, password, deactivationDate);
 	}
 }

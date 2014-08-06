@@ -5,11 +5,13 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
 import java.io.InputStream;
+import java.util.Date;
 import java.util.List;
 
 import org.dbunit.database.DatabaseConnection;
 import org.dbunit.database.IDatabaseConnection;
 import org.dbunit.dataset.IDataSet;
+import org.dbunit.dataset.ReplacementDataSet;
 import org.dbunit.dataset.xml.XmlDataSet;
 import org.dbunit.operation.DatabaseOperation;
 import org.junit.AfterClass;
@@ -31,10 +33,19 @@ public class UserQueriesTestWithDbUnit {
 		IDatabaseConnection dc = new DatabaseConnection(dbManager.getConnection());
 		InputStream is = UserQueriesTestWithDbUnit.class.getResourceAsStream("/users.xml");
         IDataSet dataSet = new XmlDataSet(is);
-       DatabaseOperation.CLEAN_INSERT.execute(dc, dataSet);
+        IDataSet dataSet2 = replace(dataSet);
+       DatabaseOperation.CLEAN_INSERT.execute(dc, dataSet2);
        
 		
 	}
+	
+    public static IDataSet replace(IDataSet dataset) {
+
+        ReplacementDataSet replacementDataSet = new ReplacementDataSet(dataset);      
+       replacementDataSet.addReplacementSubstring("%YESTERDAY%", DateUtil.getYesterdayString());
+       replacementDataSet.addReplacementSubstring("%TOMORROW%", DateUtil.getTomorrowString());
+       return replacementDataSet;
+    }
 
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
@@ -67,7 +78,6 @@ public class UserQueriesTestWithDbUnit {
 	public void testFindUserByLogin2() {
 		User user = userQueries.findUserByLogin("guest");
 		assertNotNull(user);
-		System.out.println(user.getDeactivationDate());
 	}
 	
 	@Test
