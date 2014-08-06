@@ -5,7 +5,6 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
 import java.io.InputStream;
-import java.util.Date;
 import java.util.List;
 
 import org.dbunit.database.DatabaseConnection;

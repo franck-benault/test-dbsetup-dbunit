@@ -2,9 +2,7 @@ package net.franckbenault.dbtest.sample;
 
 import static com.ninja_squad.dbsetup.Operations.*;
 
-import java.util.Date;
 
-import com.ninja_squad.dbsetup.generator.ValueGenerators;
 import com.ninja_squad.dbsetup.operation.Operation;
 
 public class DBSetupCommonOperations {
