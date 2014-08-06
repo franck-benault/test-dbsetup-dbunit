@@ -67,5 +67,12 @@ public class UserQueriesTestWithDbSetup {
 		assertNull(user);
 	}
 	
+	@Test
+	public void testToString() {
+		User user = new User(1,"MyLogin", "pwd");
+		assertNotNull(user.toString());
+		assertTrue(user.toString().contains("MyLogin"));
+	}
+	
 	
 }

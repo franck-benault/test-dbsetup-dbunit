@@ -3,6 +3,7 @@ package net.franckbenault.dbtest.sample;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import java.io.InputStream;
 import java.util.List;
@@ -70,6 +71,13 @@ public class UserQueriesTestWithDbUnit {
 	public void testFindUserByLogin_NotFound() {
 		User user = userQueries.findUserByLogin("doesNotExist");
 		assertNull(user);
+	}
+	
+	@Test
+	public void testToString() {
+		User user = new User(1,"MyLogin", "pwd");
+		assertNotNull(user.toString());
+		assertTrue(user.toString().contains("MyLogin"));
 	}
 
 }
