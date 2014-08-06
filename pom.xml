@@ -10,6 +10,7 @@
 		<module>mod02-twoTables</module>
 		<module>mod03-increment</module>
 		<module>mod04-sampleDate</module>
+		<module>mod05-DBSetupTracker</module>
 	</modules>
 
 	<dependencyManagement>
