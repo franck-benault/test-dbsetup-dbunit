@@ -47,10 +47,7 @@ public class PersonQueries {
 					.executRequest(String.format(requestSelectPersonsByFirstName,firstNameInput));
 			while (resultSet.next()) {
 
-				int id = resultSet.getInt(1);
-				String firstName = resultSet.getString(2);
-				String lastName = resultSet.getString(3);
-				Person person = new Person(id, firstName, lastName);
+				Person person = getPerson(resultSet);
 				persons.add(person);
 			}
 		} catch (SQLException e) {
@@ -66,10 +63,7 @@ public class PersonQueries {
 					.executRequest(String.format(requestSelectPersonsByLastName,lastNameInput));
 			while (resultSet.next()) {
 
-				int id = resultSet.getInt(1);
-				String firstName = resultSet.getString(2);
-				String lastName = resultSet.getString(3);
-				Person person = new Person(id, firstName, lastName);
+				Person person = getPerson(resultSet);
 				persons.add(person);
 			}
 		} catch (SQLException e) {
@@ -85,12 +79,9 @@ public class PersonQueries {
 					.executRequest(String.format(requestSelectPersonsByFirstNameLastName,firstNameInput,lastNameInput));
 			while (resultSet.next()) {
 
-				int id = resultSet.getInt(1);
-				String firstName = resultSet.getString(2);
-				String lastName = resultSet.getString(3);
-				Person person = new Person(id, firstName, lastName);
+				Person person = getPerson(resultSet);
 				
-				List<Address> addresses = findAddressesByPersonId(id);
+				List<Address> addresses = findAddressesByPersonId(person.getId());
 				person.setAddresses(addresses);
 				
 				persons.add(person);
@@ -118,5 +109,14 @@ public class PersonQueries {
 			e.printStackTrace();
 		}
 		return addresses;
+	}
+	
+	private Person getPerson(ResultSet resultSet) throws SQLException {
+
+		int id = resultSet.getInt(1);
+		String firstName = resultSet.getString(2);
+		String lastName = resultSet.getString(3);
+		return new Person(id, firstName, lastName);
+
 	}
 }
