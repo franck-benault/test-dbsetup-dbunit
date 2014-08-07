@@ -78,5 +78,135 @@ public class UserQueriesTestWithDbSetup {
 		assertTrue(user.toString().contains("MyLogin"));
 	}
 	
+
+	@Test
+	public void testDeleteUsers() {
+		List<User> users = userQueries.findAllUsers();
+		int toDelete = users.size();
+		
+		int deleted = userQueries.deleteUsers();
+		
+		assertTrue(toDelete==deleted);
+		
+		users = userQueries.findAllUsers();
+		assertTrue(users.isEmpty());
+	}
 	
+	@Test
+	public void testDeleteUsers2() {
+		List<User> users = userQueries.findAllUsers();
+		int toDelete = users.size();
+		
+		int deleted = userQueries.deleteUsers();
+		
+		assertTrue(toDelete==deleted);
+		
+		users = userQueries.findAllUsers();
+		assertTrue(users.isEmpty());	
+	}
+	
+	@Test
+	public void testDeleteUsers3() {
+		List<User> users = userQueries.findAllUsers();
+		int toDelete = users.size();
+		
+		int deleted = userQueries.deleteUsers();
+		
+		assertTrue(toDelete==deleted);
+		
+		users = userQueries.findAllUsers();
+		assertTrue(users.isEmpty());	
+	}
+	
+	@Test
+	public void testDeleteUsers4() {
+		List<User> users = userQueries.findAllUsers();
+		int toDelete = users.size();
+		
+		int deleted = userQueries.deleteUsers();
+		
+		assertTrue(toDelete==deleted);
+		
+		users = userQueries.findAllUsers();
+		assertTrue(users.isEmpty());	
+	}
+	
+	@Test
+	public void testDeleteUsers5() {
+		List<User> users = userQueries.findAllUsers();
+		int toDelete = users.size();
+		
+		int deleted = userQueries.deleteUsers();
+		
+		assertTrue(toDelete==deleted);
+		
+		users = userQueries.findAllUsers();
+		assertTrue(users.isEmpty());	
+	}
+
+	
+	@Test
+	public void testDeleteUsers6() {
+		List<User> users = userQueries.findAllUsers();
+		int toDelete = users.size();
+		
+		int deleted = userQueries.deleteUsers();
+		
+		assertTrue(toDelete==deleted);
+		
+		users = userQueries.findAllUsers();
+		assertTrue(users.isEmpty());	
+	}
+	
+	@Test
+	public void testDeleteUsers7() {
+		List<User> users = userQueries.findAllUsers();
+		int toDelete = users.size();
+		
+		int deleted = userQueries.deleteUsers();
+		
+		assertTrue(toDelete==deleted);
+		
+		users = userQueries.findAllUsers();
+		assertTrue(users.isEmpty());	
+	}
+	
+	@Test
+	public void testDeleteUsers8() {
+		List<User> users = userQueries.findAllUsers();
+		int toDelete = users.size();
+		
+		int deleted = userQueries.deleteUsers();
+		
+		assertTrue(toDelete==deleted);
+		
+		users = userQueries.findAllUsers();
+		assertTrue(users.isEmpty());	
+	}
+	
+	@Test
+	public void testDeleteUsers9() {
+		List<User> users = userQueries.findAllUsers();
+		int toDelete = users.size();
+		
+		int deleted = userQueries.deleteUsers();
+		
+		assertTrue(toDelete==deleted);
+		
+		users = userQueries.findAllUsers();
+		assertTrue(users.isEmpty());	
+	}
+	
+	@Test
+	public void testDeleteUsers10() {
+		List<User> users = userQueries.findAllUsers();
+		int toDelete = users.size();
+		
+		int deleted = userQueries.deleteUsers();
+		
+		assertTrue(toDelete==deleted);
+		
+		users = userQueries.findAllUsers();
+		assertTrue(users.isEmpty());	
+	}
 }

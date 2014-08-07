@@ -77,7 +77,14 @@ public class DbManager {
 			ResultSet resultat = statement.executeQuery(requete);
 			return resultat;
 		}
-	 
+
+		public int executUpdate(String requete) throws SQLException {
+			Statement statement;
+			statement = connection.createStatement();
+			int resultat = statement.executeUpdate(requete);
+			return resultat;
+		}
+		
 		/**
 		 * Arrête correctement HSQLDB.
 		 * @throws SQLException SQL exception
