@@ -6,14 +6,17 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import java.io.InputStream;
+import java.sql.SQLException;
 import java.util.List;
 
+import org.dbunit.DatabaseUnitException;
 import org.dbunit.database.DatabaseConnection;
 import org.dbunit.database.IDatabaseConnection;
 import org.dbunit.dataset.IDataSet;
 import org.dbunit.dataset.xml.XmlDataSet;
 import org.dbunit.operation.DatabaseOperation;
 import org.junit.AfterClass;
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -28,6 +31,10 @@ public class UserQueriesTestWithDbUnit {
 		dbManager = new DbManager();
 		dbManager.connexionDB();
 		userQueries = new UserQueries(dbManager);
+	}
+	
+	@Before
+	public void setUp() throws DatabaseUnitException, SQLException {
 		
 		IDatabaseConnection dc = new DatabaseConnection(dbManager.getConnection());
 		InputStream is = UserQueriesTestWithDbUnit.class.getResourceAsStream("/users.xml");

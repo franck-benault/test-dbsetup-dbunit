@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import java.util.List;
 
 import org.junit.AfterClass;
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -23,7 +24,10 @@ public class UserQueriesTestWithDbSetup {
 		dbManager = new DbManager();
 		dbManager.connexionDB();
 		userQueries = new UserQueries(dbManager);
-		
+	}
+	
+	@Before
+	public void setUp() {	
 		Operation operation = 
 				Operations.sequenceOf(
 		                DBSetupCommonOperations.DELETE_ALL,
