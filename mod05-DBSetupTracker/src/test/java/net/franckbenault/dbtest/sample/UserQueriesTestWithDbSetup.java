@@ -10,6 +10,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.ninja_squad.dbsetup.DbSetup;
+import com.ninja_squad.dbsetup.DbSetupTracker;
 import com.ninja_squad.dbsetup.destination.DataSourceDestination;
 import com.ninja_squad.dbsetup.operation.Operation;
 import com.ninja_squad.dbsetup.Operations;
@@ -18,6 +19,7 @@ public class UserQueriesTestWithDbSetup {
 
 	private static DbManager dbManager;
 	private static UserQueries userQueries;
+	private static DbSetupTracker dbSetupTracker = new DbSetupTracker();
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -35,7 +37,7 @@ public class UserQueriesTestWithDbSetup {
 				
 	
 		DbSetup dbSetup = new DbSetup(new DataSourceDestination(dbManager.getDataSource()), operation);
-		dbSetup.launch();
+		dbSetupTracker.launchIfNecessary(dbSetup);
 	}
 
 	@AfterClass
@@ -47,6 +49,8 @@ public class UserQueriesTestWithDbSetup {
 
 	@Test
 	public void testFindAllUsers() {
+		dbSetupTracker.skipNextLaunch();
+		
 		List<User> users = userQueries.findAllUsers();
 		assertNotNull(users);
 		assertEquals(users.size(),3);
@@ -55,24 +59,32 @@ public class UserQueriesTestWithDbSetup {
 
 	@Test
 	public void testFindUserByLogin() {
+		dbSetupTracker.skipNextLaunch();
+		
 		User user = userQueries.findUserByLogin("root");
 		assertNotNull(user);
 	}
 	
 	@Test
 	public void testFindUserByLogin2() {
+		dbSetupTracker.skipNextLaunch();
+		
 		User user = userQueries.findUserByLogin("guest");
 		assertNotNull(user);
 	}
 	
 	@Test
 	public void testFindUserByLogin_NotFound() {
+		dbSetupTracker.skipNextLaunch();
+		
 		User user = userQueries.findUserByLogin("doesNotExist");
 		assertNull(user);
 	}
 	
 	@Test
 	public void testToString() {
+		dbSetupTracker.skipNextLaunch();
+		
 		User user = new User(1,"MyLogin", "pwd");
 		assertNotNull(user.toString());
 		assertTrue(user.toString().contains("MyLogin"));
