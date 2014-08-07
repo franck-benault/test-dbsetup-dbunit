@@ -1,23 +1,27 @@
 <!DOCTYPE dataset SYSTEM "dataset.dtd">
 <dataset>
-    <table name="USERS">
+    <table name="VENDOR">
         <column>ID</column>
-        <column>LOGIN</column>
-        <column>PASSWORD</column>
+        <column>VCODE</column>
+        <column>NAME</column>
+        <column>FEATURED_PRODUCT_ID</column>
         <row>
             <value>1</value>
-            <value>root</value>
-            <value>pwd</value>
+            <value>AMA</value>
+            <value>AMAZONE</value>
+            <!-- value>1</value-->
+            <null/>
         </row>
+    </table>
+    <table name="PRODUCT">
+        <column>ID</column>
+        <column>NAME</column>
+        <column>VENDOR_ID</column>
         <row>
-            <value>2</value>
-            <value>guest</value>
-            <value>pwd</value>
-        </row>
-        <row>
-            <value>3</value>
-            <value>inactive</value>
-            <value>pwd</value>
+            <value>1</value>
+            <value>kindle</value>
+            <value>1</value>
         </row>
     </table>
 </dataset>
+

@@ -50,10 +50,9 @@ public class UserQueriesTestWithDbUnit {
 
 
 	@Test
-	@Ignore
 	public void testFindVendorByCode() {
 		
-		Vendor vendor = vendorQueries.findVendorByCode("CODE1");
+		Vendor vendor = vendorQueries.findVendorByCode("AMA");
 		assertNotNull(vendor);
 	}
 
