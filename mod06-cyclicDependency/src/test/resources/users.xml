@@ -1,0 +1,23 @@
+<!DOCTYPE dataset SYSTEM "dataset.dtd">
+<dataset>
+    <table name="USERS">
+        <column>ID</column>
+        <column>LOGIN</column>
+        <column>PASSWORD</column>
+        <row>
+            <value>1</value>
+            <value>root</value>
+            <value>pwd</value>
+        </row>
+        <row>
+            <value>2</value>
+            <value>guest</value>
+            <value>pwd</value>
+        </row>
+        <row>
+            <value>3</value>
+            <value>inactive</value>
+            <value>pwd</value>
+        </row>
+    </table>
+</dataset>
