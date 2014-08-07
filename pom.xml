@@ -11,6 +11,8 @@
 		<module>mod03-increment</module>
 		<module>mod04-sampleDate</module>
 		<module>mod05-DBSetupTracker</module>
+		<module>mod06-cyclicDependency</module>
+		<module>mod07-CompareTables</module>
 	</modules>
 
 	<dependencyManagement>
