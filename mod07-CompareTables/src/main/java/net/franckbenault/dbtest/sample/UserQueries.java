@@ -11,6 +11,8 @@ public class UserQueries {
 	private static final String requestSelectUsers = "SELECT * FROM users";
 
 	private static final String requestDeleteUsers = "delete FROM users";
+	private static final String requestDeleteUsersPerLogin = "DELETE FROM users where login='%s'";
+
 	
 	private static final String requestSelectUserByLogin = "SELECT * FROM users where login='%s'";
 
@@ -57,6 +59,19 @@ public class UserQueries {
 		try {
 			res = dbManager
 					.executUpdate(requestDeleteUsers);
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return res;
+	}
+	
+	public int deleteUsersPerLogin(String login) {
+		int res=-1;
+		try {
+			res = dbManager
+					.executUpdate(String.format(requestDeleteUsersPerLogin,login));
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

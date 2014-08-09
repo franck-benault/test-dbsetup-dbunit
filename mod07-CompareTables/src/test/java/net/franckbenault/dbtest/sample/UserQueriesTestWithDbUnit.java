@@ -111,22 +111,35 @@ public class UserQueriesTestWithDbUnit {
 		assertTrue(users.isEmpty());
 		
 	      // Fetch database data after executing your code
-		IDatabaseConnection dc = new DatabaseConnection(dbManager.getConnection());
-
-	  /*     IDataSet dataSet = dc.createDataSet();
-	        Writer out = new OutputStreamWriter(new FileOutputStream("myFile.dtd"));
-	        FlatDtdWriter datasetWriter = new FlatDtdWriter(out);
-	        datasetWriter.setContentModel(FlatDtdWriter.CHOICE);
-	        // You could also use the sequence model which is the default
-	        // datasetWriter.setContentModel(FlatDtdWriter.SEQUENCE);
-	        datasetWriter.write(dataSet);*/
-		
-		
+		IDatabaseConnection dc = new DatabaseConnection(dbManager.getConnection());		
         IDataSet databaseDataSet = dc.createDataSet();
         ITable actualTable = databaseDataSet.getTable("USERS");
 
         // Load expected data from an XML dataset
 		InputStream is = UserQueriesTestWithDbUnit.class.getResourceAsStream("/usersEmpty.xml");
+        IDataSet expectedDataSet = new FlatXmlDataSetBuilder().build(is);
+        ITable expectedTable = expectedDataSet.getTable("USERS");
+
+        // Assert actual database table match expected table
+        new DbUnitAssert().assertEquals(expectedTable, actualTable);
+	}
+	
+	@Test
+	public void testDeleteUsersPerLogin() throws DatabaseUnitException, SQLException, FileNotFoundException {
+		
+		int deleted = userQueries.deleteUsersPerLogin("guest");
+		
+		assertTrue(deleted==1);
+		
+
+		
+	      // Fetch database data after executing your code
+		IDatabaseConnection dc = new DatabaseConnection(dbManager.getConnection());		
+        IDataSet databaseDataSet = dc.createDataSet();
+        ITable actualTable = databaseDataSet.getTable("USERS");
+
+        // Load expected data from an XML dataset
+		InputStream is = UserQueriesTestWithDbUnit.class.getResourceAsStream("/usersWithoutGuest.xml");
         IDataSet expectedDataSet = new FlatXmlDataSetBuilder().build(is);
         ITable expectedTable = expectedDataSet.getTable("USERS");
 
