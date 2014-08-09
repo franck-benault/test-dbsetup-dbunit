@@ -5,14 +5,25 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.InputStream;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
 import java.sql.SQLException;
 import java.util.List;
 
+import org.dbunit.DBTestCase;
 import org.dbunit.DatabaseUnitException;
+import org.dbunit.assertion.DbUnitAssert;
 import org.dbunit.database.DatabaseConnection;
 import org.dbunit.database.IDatabaseConnection;
 import org.dbunit.dataset.IDataSet;
+import org.dbunit.dataset.ITable;
+import org.dbunit.dataset.xml.FlatDtdWriter;
+import org.dbunit.dataset.xml.FlatXmlDataSet;
+import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
 import org.dbunit.dataset.xml.XmlDataSet;
 import org.dbunit.operation.DatabaseOperation;
 import org.junit.AfterClass;
@@ -88,7 +99,7 @@ public class UserQueriesTestWithDbUnit {
 
 	
 	@Test
-	public void testDeleteUsers() {
+	public void testDeleteUsers() throws DatabaseUnitException, SQLException, FileNotFoundException {
 		List<User> users = userQueries.findAllUsers();
 		int toDelete = users.size();
 		
@@ -98,122 +109,29 @@ public class UserQueriesTestWithDbUnit {
 		
 		users = userQueries.findAllUsers();
 		assertTrue(users.isEmpty());
+		
+	      // Fetch database data after executing your code
+		IDatabaseConnection dc = new DatabaseConnection(dbManager.getConnection());
+
+	  /*     IDataSet dataSet = dc.createDataSet();
+	        Writer out = new OutputStreamWriter(new FileOutputStream("myFile.dtd"));
+	        FlatDtdWriter datasetWriter = new FlatDtdWriter(out);
+	        datasetWriter.setContentModel(FlatDtdWriter.CHOICE);
+	        // You could also use the sequence model which is the default
+	        // datasetWriter.setContentModel(FlatDtdWriter.SEQUENCE);
+	        datasetWriter.write(dataSet);*/
+		
+		
+        IDataSet databaseDataSet = dc.createDataSet();
+        ITable actualTable = databaseDataSet.getTable("USERS");
+
+        // Load expected data from an XML dataset
+		InputStream is = UserQueriesTestWithDbUnit.class.getResourceAsStream("/usersEmpty.xml");
+        IDataSet expectedDataSet = new FlatXmlDataSetBuilder().build(is);
+        ITable expectedTable = expectedDataSet.getTable("USERS");
+
+        // Assert actual database table match expected table
+        new DbUnitAssert().assertEquals(expectedTable, actualTable);
 	}
-	
-	@Test
-	public void testDeleteUsers2() {
-		List<User> users = userQueries.findAllUsers();
-		int toDelete = users.size();
-		
-		int deleted = userQueries.deleteUsers();
-		
-		assertTrue(toDelete==deleted);
-		
-		users = userQueries.findAllUsers();
-		assertTrue(users.isEmpty());	
-	}
-	
-	@Test
-	public void testDeleteUsers3() {
-		List<User> users = userQueries.findAllUsers();
-		int toDelete = users.size();
-		
-		int deleted = userQueries.deleteUsers();
-		
-		assertTrue(toDelete==deleted);
-		
-		users = userQueries.findAllUsers();
-		assertTrue(users.isEmpty());	
-	}
-	
-	@Test
-	public void testDeleteUsers4() {
-		List<User> users = userQueries.findAllUsers();
-		int toDelete = users.size();
-		
-		int deleted = userQueries.deleteUsers();
-		
-		assertTrue(toDelete==deleted);
-		
-		users = userQueries.findAllUsers();
-		assertTrue(users.isEmpty());	
-	}
-	
-	@Test
-	public void testDeleteUsers5() {
-		List<User> users = userQueries.findAllUsers();
-		int toDelete = users.size();
-		
-		int deleted = userQueries.deleteUsers();
-		
-		assertTrue(toDelete==deleted);
-		
-		users = userQueries.findAllUsers();
-		assertTrue(users.isEmpty());	
-	}
-	
-	@Test
-	public void testDeleteUsers6() {
-		List<User> users = userQueries.findAllUsers();
-		int toDelete = users.size();
-		
-		int deleted = userQueries.deleteUsers();
-		
-		assertTrue(toDelete==deleted);
-		
-		users = userQueries.findAllUsers();
-		assertTrue(users.isEmpty());	
-	}
-	
-	@Test
-	public void testDeleteUsers7() {
-		List<User> users = userQueries.findAllUsers();
-		int toDelete = users.size();
-		
-		int deleted = userQueries.deleteUsers();
-		
-		assertTrue(toDelete==deleted);
-		
-		users = userQueries.findAllUsers();
-		assertTrue(users.isEmpty());	
-	}
-	
-	@Test
-	public void testDeleteUsers8() {
-		List<User> users = userQueries.findAllUsers();
-		int toDelete = users.size();
-		
-		int deleted = userQueries.deleteUsers();
-		
-		assertTrue(toDelete==deleted);
-		
-		users = userQueries.findAllUsers();
-		assertTrue(users.isEmpty());	
-	}
-	
-	@Test
-	public void testDeleteUsers9() {
-		List<User> users = userQueries.findAllUsers();
-		int toDelete = users.size();
-		
-		int deleted = userQueries.deleteUsers();
-		
-		assertTrue(toDelete==deleted);
-		
-		users = userQueries.findAllUsers();
-		assertTrue(users.isEmpty());	
-	}
-	
-	@Test
-	public void testDeleteUsers10() {
-		List<User> users = userQueries.findAllUsers();
-		int toDelete = users.size();
-		
-		int deleted = userQueries.deleteUsers();
-		
-		assertTrue(toDelete==deleted);
-		
-		users = userQueries.findAllUsers();
-		assertTrue(users.isEmpty());	
-	}
+
 }
