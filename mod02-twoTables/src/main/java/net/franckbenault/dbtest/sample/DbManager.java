@@ -23,7 +23,7 @@ public class DbManager {
    
     
     
-		/** Service Connexion. */
+		/** Service Connection. */
 		private JDBCDataSource dataSource;
 		private Connection connection;
 	 
@@ -40,11 +40,11 @@ public class DbManager {
 		private String password = "";
 	 
 		/**
-		 * Fonction de connexion à la base de données.
+		 * connection to the database
 		 */
 		public void connexionDB() {
 			try {
-				// On commence par charger le driver JDBC d'HSQLDB
+				//loading JDBC driver for HSQLDB
 				Class.forName(jdbcDriver).newInstance();
 			} catch (InstantiationException e) {
 				System.out.println("ERROR: failed to load HSQLDB JDBC driver.");
@@ -88,15 +88,15 @@ public class DbManager {
 		}
 	 
 		/**
-		 * Arrête correctement HSQLDB.
+		 * stop HSQLDB.
 		 * @throws SQLException SQL exception
 		 */
 		public void stopDB() throws SQLException {
 			Statement st = connection.createStatement();
 	 
-			// On envoie l'instruction pour arreter proprement HSQLDB
+			// stop order to HSQLDB
 			st.execute("SHUTDOWN");
-			// On ferme la connexion
+			// close the connection
 			connection.close();
 	 
 		}
