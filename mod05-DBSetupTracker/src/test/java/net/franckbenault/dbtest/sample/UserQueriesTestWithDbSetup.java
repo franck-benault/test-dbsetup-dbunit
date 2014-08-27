@@ -95,6 +95,7 @@ public class UserQueriesTestWithDbSetup {
 	public void testDeleteUsers() {
 		List<User> users = userQueries.findAllUsers();
 		int toDelete = users.size();
+		assertTrue(toDelete>0);
 		
 		int deleted = userQueries.deleteUsers();
 		
@@ -108,6 +109,7 @@ public class UserQueriesTestWithDbSetup {
 	public void testDeleteUsers2() {
 		List<User> users = userQueries.findAllUsers();
 		int toDelete = users.size();
+		assertTrue(toDelete>0);
 		
 		int deleted = userQueries.deleteUsers();
 		
@@ -121,6 +123,7 @@ public class UserQueriesTestWithDbSetup {
 	public void testDeleteUsers3() {
 		List<User> users = userQueries.findAllUsers();
 		int toDelete = users.size();
+		assertTrue(toDelete>0);
 		
 		int deleted = userQueries.deleteUsers();
 		
@@ -134,6 +137,7 @@ public class UserQueriesTestWithDbSetup {
 	public void testDeleteUsers4() {
 		List<User> users = userQueries.findAllUsers();
 		int toDelete = users.size();
+		assertTrue(toDelete>0);
 		
 		int deleted = userQueries.deleteUsers();
 		
@@ -147,6 +151,7 @@ public class UserQueriesTestWithDbSetup {
 	public void testDeleteUsers5() {
 		List<User> users = userQueries.findAllUsers();
 		int toDelete = users.size();
+		assertTrue(toDelete>0);
 		
 		int deleted = userQueries.deleteUsers();
 		
@@ -161,6 +166,7 @@ public class UserQueriesTestWithDbSetup {
 	public void testDeleteUsers6() {
 		List<User> users = userQueries.findAllUsers();
 		int toDelete = users.size();
+		assertTrue(toDelete>0);
 		
 		int deleted = userQueries.deleteUsers();
 		
@@ -174,6 +180,7 @@ public class UserQueriesTestWithDbSetup {
 	public void testDeleteUsers7() {
 		List<User> users = userQueries.findAllUsers();
 		int toDelete = users.size();
+		assertTrue(toDelete>0);
 		
 		int deleted = userQueries.deleteUsers();
 		
@@ -187,6 +194,7 @@ public class UserQueriesTestWithDbSetup {
 	public void testDeleteUsers8() {
 		List<User> users = userQueries.findAllUsers();
 		int toDelete = users.size();
+		assertTrue(toDelete>0);
 		
 		int deleted = userQueries.deleteUsers();
 		
@@ -200,6 +208,7 @@ public class UserQueriesTestWithDbSetup {
 	public void testDeleteUsers9() {
 		List<User> users = userQueries.findAllUsers();
 		int toDelete = users.size();
+		assertTrue(toDelete>0);
 		
 		int deleted = userQueries.deleteUsers();
 		
@@ -213,6 +222,7 @@ public class UserQueriesTestWithDbSetup {
 	public void testDeleteUsers10() {
 		List<User> users = userQueries.findAllUsers();
 		int toDelete = users.size();
+		assertTrue(toDelete>0);
 		
 		int deleted = userQueries.deleteUsers();
 		
