@@ -79,15 +79,15 @@ public class DbManager {
 		}
 	 
 		/**
-		 * Arrête correctement HSQLDB.
+		 * stop correctly HSQLDB.
 		 * @throws SQLException SQL exception
 		 */
 		public void stopDB() throws SQLException {
 			Statement st = connection.createStatement();
 	 
-			// On envoie l'instruction pour arreter proprement HSQLDB
+			// send the order to stop correctly HSQLDB
 			st.execute("SHUTDOWN");
-			// On ferme la connexion
+			// close the connection
 			connection.close();
 	 
 		}

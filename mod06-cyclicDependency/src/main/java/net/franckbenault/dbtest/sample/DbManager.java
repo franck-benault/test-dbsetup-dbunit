@@ -12,21 +12,6 @@ import javax.sql.DataSource;
 import org.hsqldb.jdbc.JDBCDataSource;
 
 public class DbManager {
-	
-	
-	/*Operation insertVendorsAndProducts = 
-	        sequenceOf(
-	            insertInto("VENDOR")
-	                .columns("ID", "CODE", "NAME")
-	                .values(1L, "AMA", "AMAZON")
-	                .build(),
-	            insertInto("PRODUCT")
-	                .columns("ID", "NAME", "VENDOR_ID")
-	                .values(1L, "Kindle", "1L")
-	                .build(),
-	            sql("update VENDOR set FEATURED_PRODUCT_ID = 1 where ID = 1"));
-	            */
-	
     
     private String requestCreateTableVendors = "CREATE TABLE VENDOR ( ID INTEGER IDENTITY, VCODE VARCHAR(256), NAME VARCHAR(256), FEATURED_PRODUCT_ID INTEGER)";
     private String requestCreateTableProducts = "CREATE TABLE PRODUCT ( ID INTEGER IDENTITY, NAME VARCHAR(256), VENDOR_ID INTEGER, CONSTRAINT VENDOR_ID FOREIGN KEY(VENDOR_ID) REFERENCES VENDOR (ID))";
@@ -105,15 +90,15 @@ public class DbManager {
 		}
 		
 		/**
-		 * Arrête correctement HSQLDB.
+		 * stop correctly HSQLDB.
 		 * @throws SQLException SQL exception
 		 */
 		public void stopDB() throws SQLException {
 			Statement st = connection.createStatement();
 	 
-			// On envoie l'instruction pour arreter proprement HSQLDB
+			// send the order to stop correctly HSQLDB
 			st.execute("SHUTDOWN");
-			// On ferme la connexion
+			// close the connection
 			connection.close();
 	 
 		}
