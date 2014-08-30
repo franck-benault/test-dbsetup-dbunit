@@ -17,7 +17,7 @@ public class DbManager {
     private String requestUser2 = "INSERT INTO USERS(ID,LOGIN,PASSWORD) VALUES('2','jgoncalves', 'jgoncalves16')";
     private String requestUser3 = "INSERT INTO USERS(ID,LOGIN,PASSWORD) VALUES('3','sgoumard', 'sgoumard16')";
 		 
-		/** Service Connexion. */
+		/** Service Connection. */
 		private JDBCDataSource dataSource;
 		private Connection connection;
 	 
@@ -34,11 +34,11 @@ public class DbManager {
 		private String password = "";
 	 
 		/**
-		 * Fonction de connexion à la base de données.
+		 * Function connection to the database.
 		 */
 		public void connexionDB() {
 			try {
-				// On commence par charger le driver JDBC d'HSQLDB
+				//loading JDBC driver for HSQLDB
 				Class.forName(jdbcDriver).newInstance();
 			} catch (InstantiationException e) {
 				System.out.println("ERROR: failed to load HSQLDB JDBC driver.");

@@ -19,7 +19,7 @@ public class DbManager {
     private String requestUpdateTableProducts = ""
     		+ " ALTER TABLE VENDOR ADD CONSTRAINT FEATURED_PRODUCT_ID FOREIGN KEY(FEATURED_PRODUCT_ID) REFERENCES PRODUCT (ID)";
 		 
-		/** Service Connexion. */
+		/** Service Connection. */
 		private JDBCDataSource dataSource;
 		private Connection connection;
 	 
@@ -36,11 +36,11 @@ public class DbManager {
 		private String password = "";
 	 
 		/**
-		 * Fonction de connexion à la base de données.
+		 * Function connection to the database.
 		 */
 		public void connexionDB() {
 			try {
-				// On commence par charger le driver JDBC d'HSQLDB
+				// loading JDBC driver for HSQLDB
 				Class.forName(jdbcDriver).newInstance();
 			} catch (InstantiationException e) {
 				System.out.println("ERROR: failed to load HSQLDB JDBC driver.");
