@@ -13,6 +13,7 @@
 		<module>mod05-DBSetupTracker</module>
 		<module>mod06-cyclicDependency</module>
 		<module>mod07-CompareTables</module>
+		<module>mod08-mix-dbsetup-dbunit</module>
 	</modules>
 
 	<dependencyManagement>
