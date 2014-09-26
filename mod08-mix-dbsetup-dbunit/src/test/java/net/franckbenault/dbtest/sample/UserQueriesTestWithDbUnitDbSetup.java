@@ -19,8 +19,13 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.ninja_squad.dbsetup.DbSetup;
+import com.ninja_squad.dbsetup.Operations;
+import com.ninja_squad.dbsetup.destination.DataSourceDestination;
+import com.ninja_squad.dbsetup.operation.Operation;
 
-public class UserQueriesTestWithDbUnit {
+
+public class UserQueriesTestWithDbUnitDbSetup {
 
 	private static DbManager dbManager;
 	private static UserQueries userQueries;
@@ -36,9 +41,17 @@ public class UserQueriesTestWithDbUnit {
 	public void setUp() throws DatabaseUnitException, SQLException {
 		
 		IDatabaseConnection dc = new DatabaseConnection(dbManager.getConnection());
-		InputStream is = UserQueriesTestWithDbUnit.class.getResourceAsStream("/users.xml");
+		InputStream is = UserQueriesTestWithDbUnitDbSetup.class.getResourceAsStream("/users.xml");
         IDataSet dataSet = new XmlDataSet(is);
-       DatabaseOperation.CLEAN_INSERT.execute(dc, dataSet);
+        DatabaseOperation.CLEAN_INSERT.execute(dc, dataSet);
+       
+		Operation operation = 
+				Operations.sequenceOf(
+		                DBSetupCommonOperations.INSERT_USERS_DATA);
+				
+	
+		DbSetup dbSetup = new DbSetup(new DataSourceDestination(dbManager.getDataSource()), operation);
+		dbSetup.launch();
        
 		
 	}
@@ -55,7 +68,7 @@ public class UserQueriesTestWithDbUnit {
 	public void testFindAllUsers() {
 		List<User> users = userQueries.findAllUsers();
 		assertNotNull(users);
-		assertEquals(users.size(),3);
+		assertEquals(users.size(),6);
 	}
 	
 
