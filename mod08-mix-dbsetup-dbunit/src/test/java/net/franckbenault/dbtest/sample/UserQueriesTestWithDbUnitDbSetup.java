@@ -53,6 +53,7 @@ public class UserQueriesTestWithDbUnitDbSetup {
 		DbSetup dbSetup = new DbSetup(new DataSourceDestination(dbManager.getDataSource()), operation);
 		dbSetup.launch();
        
+		dbManager.executUpdate("INSERT INTO USERS(ID,LOGIN,PASSWORD) VALUES('7','guest7', 'guest')");
 		
 	}
 	
@@ -68,7 +69,7 @@ public class UserQueriesTestWithDbUnitDbSetup {
 	public void testFindAllUsers() {
 		List<User> users = userQueries.findAllUsers();
 		assertNotNull(users);
-		assertEquals(users.size(),6);
+		assertEquals(users.size(),7);
 	}
 	
 
