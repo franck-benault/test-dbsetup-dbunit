@@ -14,7 +14,6 @@ import org.dbunit.operation.DatabaseOperation;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Test;
 
 

@@ -2,7 +2,6 @@ package net.franckbenault.dbtest.sample;
 
 import static org.junit.Assert.*;
 
-import java.util.List;
 
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -10,7 +9,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.ninja_squad.dbsetup.DbSetup;
-import com.ninja_squad.dbsetup.DbSetupTracker;
 import com.ninja_squad.dbsetup.destination.DataSourceDestination;
 import com.ninja_squad.dbsetup.operation.Operation;
 import com.ninja_squad.dbsetup.Operations;
