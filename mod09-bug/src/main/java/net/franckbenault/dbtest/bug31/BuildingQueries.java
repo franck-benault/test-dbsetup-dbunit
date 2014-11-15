@@ -8,13 +8,12 @@ import java.util.List;
 
 public class BuildingQueries {
 
-	private static final String requestSelectUsers = "SELECT * FROM users";
+	private static final String requestSelectBuildings = "SELECT * FROM buildings";
 
 	private static final String requestDeleteUsers = "delete FROM users";
 	private static final String requestDeleteUsersPerLogin = "DELETE FROM users where login='%s'";
 
 	
-	private static final String requestSelectUserByLogin = "SELECT * FROM users where login='%s'";
 
 	
 	private DbManager dbManager;
@@ -23,11 +22,11 @@ public class BuildingQueries {
 		this.dbManager = dbManager;
 	}
 
-	public List<Building> findAllUsers() {
+	public List<Building> findAllBuildings() {
 		List<Building> users = new ArrayList<Building>();
 		try {
 			ResultSet resultSet = dbManager
-					.executRequest(requestSelectUsers);
+					.executRequest(requestSelectBuildings);
 			while (resultSet.next()) {
 
 				Building building = getBuilding(resultSet);
