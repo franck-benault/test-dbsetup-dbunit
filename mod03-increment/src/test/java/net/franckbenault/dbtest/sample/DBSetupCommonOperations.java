@@ -17,4 +17,12 @@ public class DBSetupCommonOperations {
                     .values("root", "pwd")
                     .values("guest", "pwd").build();
 
+    public static final Operation INSERT_USERS_DATA_REPEATING =
+    insertInto("USERS")
+    .withGeneratedValue("ID", ValueGenerators.sequence().startingAt(1L))
+    .withGeneratedValue("LOGIN", ValueGenerators.stringSequence("user-").startingAt(1L))
+    .withGeneratedValue("PASSWORD", ValueGenerators.stringSequence("pwd-").startingAt(1L))
+    .repeatingValues().times(10)
+    .build();
+    
 }
