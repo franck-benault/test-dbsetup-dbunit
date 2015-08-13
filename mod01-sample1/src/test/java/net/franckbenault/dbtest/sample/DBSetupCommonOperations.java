@@ -2,6 +2,7 @@ package net.franckbenault.dbtest.sample;
 
 import static com.ninja_squad.dbsetup.Operations.*;
 
+import com.ninja_squad.dbsetup.Operations;
 import com.ninja_squad.dbsetup.operation.Operation;
 
 public class DBSetupCommonOperations {
@@ -14,5 +15,6 @@ public class DBSetupCommonOperations {
                     .columns("ID", "LOGIN", "PASSWORD")
                     .values(1L, "root", "pwd")
                     .values(2L, "guest", "pwd").build();
+  
 
 }
