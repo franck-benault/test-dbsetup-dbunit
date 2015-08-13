@@ -22,7 +22,8 @@ public class DBSetupCommonOperations {
     .withGeneratedValue("ID", ValueGenerators.sequence().startingAt(1L))
     .withGeneratedValue("LOGIN", ValueGenerators.stringSequence("user-").startingAt(1L))
     .withGeneratedValue("PASSWORD", ValueGenerators.stringSequence("pwd-").startingAt(1L))
-    .repeatingValues().times(10)
+    .columns("DESCRIPTION")
+    .repeatingValues("fake description").times(10)
     .build();
     
 }

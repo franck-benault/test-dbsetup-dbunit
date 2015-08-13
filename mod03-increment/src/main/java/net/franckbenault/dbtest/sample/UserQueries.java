@@ -55,7 +55,8 @@ public class UserQueries {
 		int id = resultSet.getInt(1);
 		String login = resultSet.getString(2);
 		String password = resultSet.getString(3);
-		return new User(id, login, password);
+		String description = resultSet.getString(4);
+		return new User(id, login, password, description);
 
 	}
 }

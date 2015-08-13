@@ -56,5 +56,6 @@ public class UserQueriesRepeatingValue {
 		assertNotNull(user);
 		assertEquals(user.getId(),5);
 		assertEquals(user.getPassword(),"pwd-5");
+		assertEquals(user.getDescription(),"fake description");
 	}
 }

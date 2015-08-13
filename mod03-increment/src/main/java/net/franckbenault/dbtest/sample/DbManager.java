@@ -12,7 +12,7 @@ import org.hsqldb.jdbc.JDBCDataSource;
 
 public class DbManager {
 	
-    private String requestCreateTablesUsers = "CREATE TABLE USERS ( ID INTEGER IDENTITY, LOGIN VARCHAR(256), PASSWORD VARCHAR(256))";
+    private String requestCreateTablesUsers = "CREATE TABLE USERS ( ID INTEGER IDENTITY, LOGIN VARCHAR(256), PASSWORD VARCHAR(256), DESCRIPTION VARCHAR(256))";
     private String requestUser1 = "INSERT INTO USERS(ID,LOGIN,PASSWORD) VALUES('1','straumat', 'straumat16')";
     private String requestUser2 = "INSERT INTO USERS(ID,LOGIN,PASSWORD) VALUES('2','jgoncalves', 'jgoncalves16')";
     private String requestUser3 = "INSERT INTO USERS(ID,LOGIN,PASSWORD) VALUES('3','sgoumard', 'sgoumard16')";
